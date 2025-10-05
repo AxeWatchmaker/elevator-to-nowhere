@@ -9,9 +9,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
         <style>
+            * {
+                box-sizing: border-box;
+            }
+
             body {
                 margin: 0;
-                padding: 0;
+                padding: 10px;
                 background: #000;
                 background-image: 
                     linear-gradient(45deg, #111 25%, transparent 25%),
@@ -23,18 +27,19 @@
                 min-height: 100vh;
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
                 image-rendering: pixelated;
             }
 
             .main {
                 background: #c0c0c0;
-                padding: 20px;
-                width: 90%;
+                padding: 15px;
+                width: 100%;
                 max-width: 800px;
                 border: 4px solid;
                 border-color: #ffffff #808080 #808080 #ffffff;
                 box-shadow: 4px 4px 0px #000;
+                margin-top: 20px;
             }
 
             h1, .menu a, h2, .system-alert, .comic-controls, .status-bar {
@@ -53,21 +58,22 @@
             h1 {
                 text-align: center;
                 color: #000;
-                font-size: 1.8em;
-                margin-bottom: 20px;
+                font-size: 1.5em;
+                margin-bottom: 15px;
                 text-shadow: 2px 2px 0px #808080;
                 background: #0000ff;
                 color: #ffff00;
                 padding: 10px;
                 border: 2px solid #000;
-                margin: 0 -10px 20px -10px;
+                margin: 0 -5px 15px -5px;
                 line-height: 1.4;
+                word-wrap: break-word;
             }
 
             h2 {
                 color: #000;
-                font-size: 1em;
-                margin: 25px 0 15px 0;
+                font-size: 0.9em;
+                margin: 20px 0 12px 0;
                 background: #ffff00;
                 padding: 8px;
                 border: 2px solid #000;
@@ -78,9 +84,10 @@
             .menu {
                 background: #000080;
                 padding: 0;
-                margin: 0 0 20px 0;
+                margin: 0 0 15px 0;
                 list-style: none;
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: center;
                 border: 2px solid #000;
             }
@@ -88,6 +95,8 @@
             .menu li {
                 margin: 0;
                 border-right: 2px solid #000;
+                flex: 1;
+                min-width: 120px;
             }
 
             .menu li:last-child {
@@ -98,11 +107,13 @@
                 display: block;
                 color: #fff;
                 text-decoration: none;
-                padding: 12px 20px;
-                font-size: 12px;
+                padding: 10px 5px;
+                font-size: 10px;
                 transition: none;
                 background: #000080;
                 line-height: 1.4;
+                text-align: center;
+                word-wrap: break-word;
             }
 
             .menu a:hover {
@@ -112,14 +123,14 @@
             }
 
             .archive-content {
-                margin-top: 20px;
+                margin-top: 15px;
             }
 
             .search-box {
                 background: #000;
-                padding: 15px;
+                padding: 12px;
                 border: 2px solid #00ff00;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
                 text-align: center;
             }
 
@@ -128,8 +139,10 @@
                 border: 2px solid #c0c0c0;
                 background: #000;
                 color: #00ff00;
-                width: 200px;
-                margin-right: 10px;
+                width: 100%;
+                max-width: 200px;
+                margin-right: 8px;
+                margin-bottom: 8px;
                 font-size: 1em;
             }
 
@@ -141,6 +154,8 @@
                 color: #000;
                 cursor: pointer;
                 font-size: 1em;
+                width: 100%;
+                max-width: 120px;
             }
 
             .search-box button:hover {
@@ -150,16 +165,16 @@
 
             .archive-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-                margin: 20px 0;
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 12px;
+                margin: 15px 0;
             }
 
             .archive-item {
                 background: #ffffff;
                 border: 2px solid #000;
                 text-align: center;
-                padding: 10px;
+                padding: 8px;
             }
 
             .archive-item a {
@@ -178,60 +193,66 @@
 
             .thumbnail {
                 width: 100%;
-                height: 120px;
+                height: 100px;
                 background: #c0c0c0;
                 border: 2px solid #000;
-                margin-bottom: 8px;
+                margin-bottom: 6px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-family: "Press Start 2P", system-ui;
-                font-size: 0.7em;
+                font-size: 0.6em;
                 line-height: 1.4;
+                padding: 5px;
+                word-wrap: break-word;
             }
 
             .page-number {
                 font-weight: bold;
-                font-size: 1.1em;
-                margin-bottom: 5px;
+                font-size: 1em;
+                margin-bottom: 4px;
             }
 
             .page-title {
-                font-size: 0.9em;
+                font-size: 0.8em;
             }
 
             .archive-stats {
                 background: #00ff00;
-                padding: 12px;
+                padding: 10px;
                 border: 2px solid #000;
-                margin: 20px 0;
+                margin: 15px 0;
                 text-align: center;
             }
 
             .archive-stats p {
-                margin: 5px 0;
+                margin: 4px 0;
                 font-weight: bold;
             }
 
             .navigation-controls {
                 display: flex;
                 justify-content: space-between;
-                margin: 20px 0;
+                margin: 15px 0;
                 background: #c0c0c0;
                 border: 2px solid;
                 border-color: #808080 #ffffff #ffffff #808080;
-                padding: 10px;
+                padding: 8px;
+                gap: 8px;
             }
 
             .navigation-controls a {
-                font-size: 1em;
+                font-size: 0.9em;
                 color: #000;
                 text-decoration: none;
-                padding: 8px 15px;
+                padding: 6px 12px;
                 background: #c0c0c0;
                 border: 2px solid;
                 border-color: #ffffff #808080 #808080 #ffffff;
                 font-weight: bold;
+                text-align: center;
+                flex: 1;
+                word-wrap: break-word;
             }
 
             .navigation-controls a:hover {
@@ -253,21 +274,23 @@
                 background: #c0c0c0;
                 border: 2px solid;
                 border-color: #808080 #ffffff #ffffff #808080;
-                padding: 4px 8px;
-                margin-top: 20px;
-                font-size: 0.7em;
+                padding: 4px 6px;
+                margin-top: 15px;
+                font-size: 0.6em;
                 display: flex;
                 justify-content: space-between;
+                flex-wrap: wrap;
                 line-height: 1.4;
+                gap: 5px;
             }
 
             .copyright {
                 text-align: center;
                 font-size: 0.9em;
                 color: #808080;
-                margin-top: 15px;
+                margin-top: 12px;
                 border-top: 1px solid #808080;
-                padding-top: 10px;
+                padding-top: 8px;
             }
 
             .blink {
@@ -282,32 +305,33 @@
             .system-alert {
                 background: #ff0000;
                 color: #ffff00;
-                padding: 10px;
+                padding: 8px;
                 border: 2px solid #000;
-                margin: 15px 0;
+                margin: 12px 0;
                 text-align: center;
                 font-weight: bold;
-                font-size: 0.8em;
+                font-size: 0.7em;
                 line-height: 1.4;
             }
 
             .language-switcher {
                 position: absolute;
-                top: 20px;
-                right: 20px;
+                top: 10px;
+                right: 10px;
                 background: #000080;
                 border: 2px solid #000;
                 padding: 5px;
+                z-index: 10;
             }
             
             .language-switcher a {
                 font-family: "Press Start 2P", system-ui;
                 color: #fff;
                 text-decoration: none;
-                padding: 5px 10px;
+                padding: 5px 8px;
                 background: #000080;
                 border: 2px solid #000;
-                font-size: 0.7em;
+                font-size: 0.6em;
                 line-height: 1.4;
             }
             
@@ -320,6 +344,161 @@
                 background: #0000ff !important;
                 color: #ffff00 !important;
             }
+
+            /* Мобильное меню */
+            .mobile-menu-toggle {
+                display: none;
+                background: #000080;
+                color: #fff;
+                border: 2px solid #000;
+                padding: 10px;
+                text-align: center;
+                font-family: "Press Start 2P", system-ui;
+                font-size: 0.8em;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+
+            .mobile-menu-toggle:hover {
+                background: #0000ff;
+                color: #ffff00;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 5px;
+                    align-items: flex-start;
+                }
+                
+                .main {
+                    padding: 10px;
+                    margin-top: 10px;
+                }
+                
+                h1 {
+                    font-size: 1.2em;
+                    padding: 8px;
+                    margin: 0 -5px 10px -5px;
+                }
+                
+                .mobile-menu-toggle {
+                    display: block;
+                }
+                
+                .menu {
+                    display: none;
+                    flex-direction: column;
+                }
+                
+                .menu.active {
+                    display: flex;
+                }
+                
+                .menu li {
+                    border-right: none;
+                    border-bottom: 2px solid #000;
+                    min-width: auto;
+                }
+                
+                .menu li:last-child {
+                    border-bottom: none;
+                }
+                
+                .menu a {
+                    padding: 12px 5px;
+                    font-size: 10px;
+                }
+                
+                .language-switcher {
+                    position: relative;
+                    top: auto;
+                    right: auto;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 10px;
+                }
+                
+                .archive-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                    gap: 10px;
+                }
+                
+                .thumbnail {
+                    height: 80px;
+                    font-size: 0.5em;
+                }
+                
+                .navigation-controls {
+                    flex-direction: column;
+                }
+                
+                .status-bar {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+                
+                .search-box {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                
+                .search-box input {
+                    margin-right: 0;
+                    margin-bottom: 8px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                h1 {
+                    font-size: 1em;
+                }
+                
+                .menu a {
+                    font-size: 9px;
+                    padding: 10px 3px;
+                }
+                
+                .archive-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 8px;
+                }
+                
+                .thumbnail {
+                    height: 70px;
+                    font-size: 0.45em;
+                }
+                
+                .page-number {
+                    font-size: 0.9em;
+                }
+                
+                .page-title {
+                    font-size: 0.7em;
+                }
+                
+                .navigation-controls a {
+                    font-size: 0.8em;
+                    padding: 8px 6px;
+                }
+                
+                .system-alert {
+                    font-size: 0.6em;
+                    padding: 6px;
+                }
+            }
+
+            /* Ландшафтная ориентация для мобильных */
+            @media (max-width: 768px) and (orientation: landscape) {
+                .archive-grid {
+                    grid-template-columns: repeat(4, 1fr);
+                }
+                
+                .thumbnail {
+                    height: 60px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -330,9 +509,13 @@
             </div>
             
             <h1>ELEVATOR TO NOWHERE</h1>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                ☰ MENU
+            </div>
             
             <nav>
-                <ul class="menu">
+                <ul class="menu" id="mainMenu">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="comic.html">COMIC</a></li>
                     <li><a href="forum.html">FORUM</a></li>
@@ -416,6 +599,20 @@
                             <div class="page-title">CLASSIFIED</div>
                         </a>
                     </div>
+                    <div class="archive-item">
+                        <a href="#">
+                            <div class="thumbnail">[COMING SOON]</div>
+                            <div class="page-number">PAGE 009</div>
+                            <div class="page-title">CLASSIFIED</div>
+                        </a>
+                    </div>
+                    <div class="archive-item">
+                        <a href="#">
+                            <div class="thumbnail">[COMING SOON]</div>
+                            <div class="page-number">PAGE 010</div>
+                            <div class="page-title">CLASSIFIED</div>
+                        </a>
+                    </div>
                 </div>
 
                 <div class="navigation-controls">
@@ -425,7 +622,7 @@
                 </div>
 
                 <div class="status-bar">
-                    <span>🗂️ VIEWING: PAGES 1-8</span>
+                    <span>🗂️ VIEWING: PAGES 1-10</span>
                     <span>👁️ ARCHIVE ACCESS: <span class="blink">GRANTED</span></span>
                 </div>
 
@@ -436,17 +633,35 @@
         </div>
 
         <script>
-            document.querySelector('.search-box button').addEventListener('click', function() {
-                const searchTerm = document.querySelector('.search-box input').value;
-                if (searchTerm.trim() !== '') {
-                    alert('SEARCHING FOR: ' + searchTerm + '\n\n(SEARCH FUNCTIONALITY COMING SOON!)');
-                }
-            });
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                const mainMenu = document.getElementById('mainMenu');
+                
+                if (mobileMenuToggle && mainMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        mainMenu.classList.toggle('active');
+                    });
 
-            document.querySelector('.search-box input').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    document.querySelector('.search-box button').click();
+                    document.addEventListener('click', function(event) {
+                        if (!event.target.closest('.menu') && !event.target.closest('.mobile-menu-toggle')) {
+                            mainMenu.classList.remove('active');
+                        }
+                    });
                 }
+
+                // Поиск
+                document.querySelector('.search-box button').addEventListener('click', function() {
+                    const searchTerm = document.querySelector('.search-box input').value;
+                    if (searchTerm.trim() !== '') {
+                        alert('SEARCHING FOR: ' + searchTerm + '\n\n(SEARCH FUNCTIONALITY COMING SOON!)');
+                    }
+                });
+
+                document.querySelector('.search-box input').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        document.querySelector('.search-box button').click();
+                    }
+                });
             });
         </script>
     </body>

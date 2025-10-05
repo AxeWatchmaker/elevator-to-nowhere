@@ -10,9 +10,13 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
         <style>
+            * {
+                box-sizing: border-box;
+            }
+
             body {
                 margin: 0;
-                padding: 0;
+                padding: 10px;
                 background: #000;
                 background-image: 
                     linear-gradient(45deg, #111 25%, transparent 25%),
@@ -24,18 +28,19 @@
                 min-height: 100vh;
                 display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
                 image-rendering: pixelated;
             }
 
             .main {
                 background: #c0c0c0;
-                padding: 20px;
-                width: 90%;
+                padding: 15px;
+                width: 100%;
                 max-width: 800px;
                 border: 4px solid;
                 border-color: #ffffff #808080 #808080 #ffffff;
                 box-shadow: 4px 4px 0px #000;
+                margin-top: 20px;
             }
 
             h1, .menu a, h2, .warning-box, .status-bar, .language-switcher a {
@@ -54,21 +59,22 @@
             h1 {
                 text-align: center;
                 color: #000;
-                font-size: 1.8em;
-                margin-bottom: 20px;
+                font-size: 1.5em;
+                margin-bottom: 15px;
                 text-shadow: 2px 2px 0px #808080;
                 background: #0000ff;
                 color: #ffff00;
                 padding: 10px;
                 border: 2px solid #000;
-                margin: 0 -10px 20px -10px;
+                margin: 0 -5px 15px -5px;
                 line-height: 1.4;
+                word-wrap: break-word;
             }
 
             h2 {
                 color: #000;
-                font-size: 1em;
-                margin: 25px 0 15px 0;
+                font-size: 0.9em;
+                margin: 20px 0 12px 0;
                 background: #ffff00;
                 padding: 8px;
                 border: 2px solid #000;
@@ -79,9 +85,10 @@
             .menu {
                 background: #000080;
                 padding: 0;
-                margin: 0 0 20px 0;
+                margin: 0 0 15px 0;
                 list-style: none;
                 display: flex;
+                flex-wrap: wrap;
                 justify-content: center;
                 border: 2px solid #000;
             }
@@ -89,6 +96,8 @@
             .menu li {
                 margin: 0;
                 border-right: 2px solid #000;
+                flex: 1;
+                min-width: 120px;
             }
 
             .menu li:last-child {
@@ -99,11 +108,13 @@
                 display: block;
                 color: #fff;
                 text-decoration: none;
-                padding: 12px 20px;
-                font-size: 12px;
+                padding: 10px 5px;
+                font-size: 10px;
                 transition: none;
                 background: #000080;
                 line-height: 1.4;
+                text-align: center;
+                word-wrap: break-word;
             }
 
             .menu a:hover {
@@ -113,41 +124,42 @@
             }
 
             .about-content {
-                margin-top: 20px;
+                margin-top: 15px;
             }
 
             .about-section {
                 background: #ffffff;
-                padding: 15px;
+                padding: 12px;
                 border: 2px solid #000;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
 
             .about-section p {
                 font-size: 1.1em;
                 line-height: 1.4;
                 color: #000;
-                margin-bottom: 12px;
+                margin-bottom: 10px;
             }
 
             .who-text {
                 text-align: center;
-                font-size: 3em;
+                font-size: 2em;
                 color: #c0c0c0;
                 font-weight: bold;
                 text-shadow: 2px 2px 0px #808080;
-                margin: 30px 0;
+                margin: 20px 0;
                 font-style: italic;
                 opacity: 0.7;
                 font-family: 'VT323', monospace;
+                word-wrap: break-word;
             }
 
             .update-schedule {
                 background: #00ff00;
-                padding: 12px;
+                padding: 10px;
                 border: 3px dashed #008000;
                 text-align: center;
-                margin: 20px 0;
+                margin: 15px 0;
                 font-size: 1.1em;
             }
 
@@ -161,20 +173,23 @@
             .contact-links {
                 display: flex;
                 justify-content: center;
-                gap: 15px;
-                margin-top: 25px;
+                gap: 10px;
+                margin-top: 20px;
                 flex-wrap: wrap;
             }
 
             .contact-links a {
-                font-size: 1.1em;
+                font-size: 1em;
                 color: #000;
                 text-decoration: none;
-                padding: 10px 15px;
+                padding: 8px 12px;
                 background: #c0c0c0;
                 border: 2px solid;
                 border-color: #ffffff #808080 #808080 #ffffff;
                 font-weight: bold;
+                text-align: center;
+                flex: 1;
+                min-width: 120px;
             }
 
             .contact-links a:hover {
@@ -185,8 +200,8 @@
 
             .credits {
                 text-align: center;
-                margin-top: 25px;
-                padding-top: 15px;
+                margin-top: 20px;
+                padding-top: 12px;
                 border-top: 2px solid #808080;
             }
 
@@ -200,12 +215,14 @@
                 background: #c0c0c0;
                 border: 2px solid;
                 border-color: #808080 #ffffff #ffffff #808080;
-                padding: 4px 8px;
-                margin-top: 20px;
-                font-size: 0.7em;
+                padding: 4px 6px;
+                margin-top: 15px;
+                font-size: 0.6em;
                 display: flex;
                 justify-content: space-between;
+                flex-wrap: wrap;
                 line-height: 1.4;
+                gap: 5px;
             }
 
             .blink {
@@ -220,31 +237,32 @@
             .warning-box {
                 background: #ff0000;
                 color: #ffff00;
-                padding: 10px;
+                padding: 8px;
                 border: 2px solid #000;
-                margin: 15px 0;
+                margin: 12px 0;
                 text-align: center;
                 font-weight: bold;
-                font-size: 0.8em;
+                font-size: 0.7em;
                 line-height: 1.4;
             }
 
             .language-switcher {
                 position: absolute;
-                top: 20px;
-                right: 20px;
+                top: 10px;
+                right: 10px;
                 background: #000080;
                 border: 2px solid #000;
                 padding: 5px;
+                z-index: 10;
             }
             
             .language-switcher a {
                 color: #fff;
                 text-decoration: none;
-                padding: 5px 10px;
+                padding: 5px 8px;
                 background: #000080;
                 border: 2px solid #000;
-                font-size: 0.7em;
+                font-size: 0.6em;
                 line-height: 1.4;
             }
             
@@ -257,6 +275,210 @@
                 background: #0000ff !important;
                 color: #ffff00 !important;
             }
+
+            .mobile-menu-toggle {
+                display: none;
+                background: #000080;
+                color: #fff;
+                border: 2px solid #000;
+                padding: 10px;
+                text-align: center;
+                font-family: "Press Start 2P", system-ui;
+                font-size: 0.8em;
+                margin-bottom: 10px;
+                cursor: pointer;
+            }
+
+            .mobile-menu-toggle:hover {
+                background: #0000ff;
+                color: #ffff00;
+            }
+
+            @media (max-width: 768px) {
+                body {
+                    padding: 5px;
+                    align-items: flex-start;
+                }
+                
+                .main {
+                    padding: 10px;
+                    margin-top: 10px;
+                }
+                
+                h1 {
+                    font-size: 1.2em;
+                    padding: 8px;
+                    margin: 0 -5px 10px -5px;
+                }
+                
+                .mobile-menu-toggle {
+                    display: block;
+                }
+                
+                .menu {
+                    display: none;
+                    flex-direction: column;
+                }
+                
+                .menu.active {
+                    display: flex;
+                }
+                
+                .menu li {
+                    border-right: none;
+                    border-bottom: 2px solid #000;
+                    min-width: auto;
+                }
+                
+                .menu li:last-child {
+                    border-bottom: none;
+                }
+                
+                .menu a {
+                    padding: 12px 5px;
+                    font-size: 10px;
+                }
+                
+                .language-switcher {
+                    position: relative;
+                    top: auto;
+                    right: auto;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 10px;
+                }
+                
+                .about-section {
+                    padding: 10px;
+                    margin-bottom: 12px;
+                }
+                
+                .about-section p {
+                    font-size: 1em;
+                }
+                
+                .who-text {
+                    font-size: 1.5em;
+                    margin: 15px 0;
+                }
+                
+                .update-schedule {
+                    padding: 8px;
+                    margin: 12px 0;
+                }
+                
+                .contact-links {
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                
+                .contact-links a {
+                    min-width: auto;
+                }
+                
+                .status-bar {
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                }
+            }
+
+            @media (max-width: 480px) {
+                h1 {
+                    font-size: 1em;
+                }
+                
+                .menu a {
+                    font-size: 9px;
+                    padding: 10px 3px;
+                }
+                
+                .about-section {
+                    padding: 8px;
+                }
+                
+                .about-section p {
+                    font-size: 0.9em;
+                }
+                
+                .who-text {
+                    font-size: 1.2em;
+                }
+                
+                h2 {
+                    font-size: 0.8em;
+                    padding: 6px;
+                }
+                
+                .update-schedule p {
+                    font-size: 1em;
+                }
+                
+                .contact-links a {
+                    font-size: 0.9em;
+                    padding: 10px 8px;
+                }
+                
+                .warning-box {
+                    font-size: 0.6em;
+                    padding: 6px;
+                }
+                
+                .status-bar {
+                    font-size: 0.5em;
+                }
+            }
+
+            @media (max-width: 768px) and (orientation: landscape) {
+                .main {
+                    margin-top: 5px;
+                }
+                
+                .about-section {
+                    padding: 8px;
+                }
+                
+                .contact-links {
+                    flex-direction: row;
+                }
+            }
+
+            @media (max-width: 360px) {
+                .menu a {
+                    font-size: 8px;
+                    padding: 8px 2px;
+                }
+                
+                .about-section p {
+                    font-size: 0.8em;
+                }
+                
+                .who-text {
+                    font-size: 1em;
+                }
+            }
+
+            @media (hover: none) {
+                .menu a:hover {
+                    background: #000080;
+                    color: #fff;
+                }
+                
+                .menu a:active {
+                    background: #0000ff;
+                    color: #ffff00;
+                }
+                
+                .contact-links a:hover {
+                    background: #c0c0c0;
+                    color: #000;
+                }
+                
+                .contact-links a:active {
+                    background: #0000ff;
+                    color: #ffff00;
+                }
+            }
         </style>
     </head>
     <body>
@@ -267,9 +489,13 @@
             </div>
 
             <h1>ЛИФТ В НИКУДА</h1>
+
+            <div class="mobile-menu-toggle" id="mobileMenuToggle">
+                ☰ МЕНЮ
+            </div>
             
             <nav>
-                <ul class="menu">
+                <ul class="menu" id="mainMenu">
                     <li><a href="index-ru.html">ГЛАВНАЯ</a></li>
                     <li><a href="comic-ru.html">КОМИКС</a></li>
                     <li><a href="forum-ru.html">ФОРУМ</a></li>
@@ -327,5 +553,34 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+                const mainMenu = document.getElementById('mainMenu');
+                
+                if (mobileMenuToggle && mainMenu) {
+                    mobileMenuToggle.addEventListener('click', function() {
+                        mainMenu.classList.toggle('active');
+                    });
+
+                    document.addEventListener('click', function(event) {
+                        if (!event.target.closest('.menu') && !event.target.closest('.mobile-menu-toggle')) {
+                            mainMenu.classList.remove('active');
+                        }
+                    });
+
+                    document.addEventListener('keydown', function(event) {
+                        if (event.key === 'Escape') {
+                            mainMenu.classList.remove('active');
+                        }
+                    });
+                }
+
+                if ('ontouchstart' in window) {
+                    document.body.classList.add('touch-device');
+                }
+            });
+        </script>
     </body>
 </html>
