@@ -377,6 +377,40 @@
                 cursor: pointer;
             }
 
+            /* Acknowledgements Styles */
+            .acknowledgements-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .acknowledgements-list li {
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 1px dashed #808080;
+            }
+
+            .acknowledgements-list li:last-child {
+                border-bottom: none;
+                margin-bottom: 0;
+            }
+
+            .contributor-name {
+                font-weight: bold;
+                color: #0000ff;
+                font-size: 1.3em;
+                display: block;
+                margin-bottom: 5px;
+                text-shadow: 1px 1px 0px #c0c0c0;
+            }
+
+            .contribution-desc {
+                font-size: 1.1em;
+                color: #000;
+                margin-left: 10px;
+                font-style: italic;
+            }
+
             .mobile-menu-toggle {
                 display: none;
                 background: #000080;
@@ -492,6 +526,14 @@
                     width: 100%;
                     justify-content: center;
                 }
+                
+                .contributor-name {
+                    font-size: 1.2em;
+                }
+                
+                .contribution-desc {
+                    font-size: 1em;
+                }
             }
 
             @media (max-width: 480px) {
@@ -548,6 +590,14 @@
                     font-size: 0.5em;
                     max-width: 120px;
                 }
+                
+                .contributor-name {
+                    font-size: 1.1em;
+                }
+                
+                .contribution-desc {
+                    font-size: 0.9em;
+                }
             }
 
             @media (max-width: 768px) and (orientation: landscape) {
@@ -576,6 +626,14 @@
                 
                 .who-text {
                     font-size: 1em;
+                }
+                
+                .contributor-name {
+                    font-size: 1em;
+                }
+                
+                .contribution-desc {
+                    font-size: 0.8em;
                 }
             }
 
@@ -664,6 +722,16 @@
                 <div class="about-section">
                     <h2>MAIN CHARACTERS</h2>
                     <div class="who-text">WHO???</div>
+                </div>
+
+                <div class="about-section">
+                    <h2>ACKNOWLEDGEMENTS</h2>
+                    <ul class="acknowledgements-list">
+                        <li>
+                            <span class="contributor-name">DESHA BLIN</span>
+                            <span class="contribution-desc">Created some design elements</span>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="update-schedule">
