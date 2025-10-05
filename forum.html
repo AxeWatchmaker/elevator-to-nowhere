@@ -220,6 +220,13 @@
         .instructions li {
             margin-bottom: 8px;
         }
+
+        .giscus-loading {
+            text-align: center;
+            padding: 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -257,7 +264,11 @@
 
         <div class="giscus-section">
             <div class="section-title">💬 COMIC DISCUSSION</div>
-            <div id="giscus-container"></div>
+            <div id="giscus-container">
+                <div class="giscus-loading">
+                    Loading comments...
+                </div>
+            </div>
         </div>
 
         <div class="telegram-promo">
@@ -278,12 +289,15 @@
 
     <script>
         function loadGiscus() {
+            const container = document.getElementById('giscus-container');
+            container.innerHTML = '';
+            
             const script = document.createElement('script');
             script.src = 'https://giscus.app/client.js';
             script.setAttribute('data-repo', 'AxeWatchmaker/elevator-to-nowhere');
-            script.setAttribute('data-repo-id', 'REPO_ID');
-            script.setAttribute('data-category', 'General');
-            script.setAttribute('data-category-id', 'CATEGORY_ID');
+            script.setAttribute('data-repo-id', 'R_kgDOP8XWSQ');
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', 'DIC_kwDOP8XWSc4CwRMe');
             script.setAttribute('data-mapping', 'pathname');
             script.setAttribute('data-strict', '0');
             script.setAttribute('data-reactions-enabled', '1');
@@ -293,11 +307,30 @@
             script.setAttribute('data-lang', 'en');
             script.setAttribute('crossorigin', 'anonymous');
             script.async = true;
+
+            script.onerror = function() {
+                container.innerHTML = `
+                    <div class="giscus-loading">
+                        ❌ Error loading comments. Please check:<br>
+                        1. Discussions are enabled in repository<br>
+                        2. Giscus app is installed<br>
+                        3. At least one discussion is created
+                    </div>
+                `;
+            };
             
-            document.getElementById('giscus-container').appendChild(script);
+            container.appendChild(script);
         }
 
-        document.addEventListener('DOMContentLoaded', loadGiscus);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', loadGiscus);
+        } else {
+            loadGiscus();
+        }
+
+        window.addEventListener('popstate', function() {
+            setTimeout(loadGiscus, 100);
+        });
     </script>
 </body>
 </html>
