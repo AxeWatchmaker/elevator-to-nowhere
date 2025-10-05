@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>elevator to nowhere</title>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: #000;
+                background-image: 
+                    linear-gradient(45deg, #111 25%, transparent 25%),
+                    linear-gradient(-45deg, #111 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #111 75%),
+                    linear-gradient(-45deg, transparent 75%, #111 75%);
+                background-size: 20px 20px;
+                background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                image-rendering: pixelated;
+            }
+
+            .main {
+                background: #c0c0c0;
+                padding: 20px;
+                width: 90%;
+                max-width: 800px;
+                border: 4px solid;
+                border-color: #ffffff #808080 #808080 #ffffff;
+                box-shadow: 4px 4px 0px #000;
+            }
+
+            h1, .menu a, .comic-preview h2, .news-section h2, .latest-updates h3 {
+                font-family: "Press Start 2P", system-ui;
+                font-weight: 400;
+                font-style: normal;
+                image-rendering: pixelated;
+            }
+
+           p, .welcome-text, .comic-description, .news-content, .update-list li, .copyright {
+                font-family: 'VT323', monospace;
+                font-size: 1.2em;
+                line-height: 1.4;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                font-size: 1.8em;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 0px #808080;
+                background: #0000ff;
+                color: #ffff00;
+                padding: 10px;
+                border: 2px solid #000;
+                margin: 0 -10px 20px -10px;
+                line-height: 1.4;
+            }
+
+            .menu {
+                background: #000080;
+                padding: 0;
+                margin: 0 0 20px 0;
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                border: 2px solid #000;
+            }
+
+            .menu li {
+                margin: 0;
+                border-right: 2px solid #000;
+            }
+
+            .menu li:last-child {
+                border-right: none;
+            }
+
+            .menu a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                padding: 12px 20px;
+                font-size: 12px;
+                transition: none;
+                background: #000080;
+                line-height: 1.4;
+            }
+
+            .menu a:hover {
+                background: #0000ff;
+                color: #ffff00;
+                transform: none;
+            }
+
+            .content {
+                background: #ffffff;
+                border: 2px solid #000;
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .welcome-text {
+                font-size: 1.1em;
+                line-height: 1.4;
+                color: #000;
+                margin-bottom: 15px;
+            }
+
+            .comic-preview {
+                background: #ffff00;
+                border: 3px solid #ff0000;
+                padding: 15px;
+                margin: 15px 0;
+                text-align: center;
+            }
+
+            .comic-preview h2 {
+                color: #000;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+                text-decoration: underline;
+                line-height: 1.4;
+            }
+
+            .comic-image {
+                width: 100%;
+                height: 200px;
+                background: 
+                    repeating-linear-gradient(45deg, #000, #000 2px, #fff 2px, #fff 4px);
+                border: 2px solid #000;
+                margin: 10px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: "Press Start 2P", system-ui;
+                color: #000;
+                font-size: 0.9em;
+                line-height: 1.4;
+            }
+
+            .latest-updates {
+                background: #00ff00;
+                border: 2px dashed #008000;
+                padding: 12px;
+                margin: 15px 0;
+            }
+
+            .latest-updates h3 {
+                color: #000;
+                font-size: 1em;
+                margin-bottom: 8px;
+                text-align: center;
+                line-height: 1.4;
+            }
+
+            .update-list {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            .update-list li {
+                font-size: 1em;
+                color: #000;
+                padding: 5px 0;
+                border-bottom: 1px dotted #000;
+            }
+
+            .update-list li:before {
+                content: "► ";
+                color: #ff0000;
+            }
+
+            .visitor-counter {
+                background: #000;
+                color: #00ff00;
+                padding: 8px;
+                text-align: center;
+                font-family: "Press Start 2P", system-ui;
+                font-size: 0.8em;
+                border: 2px solid #00ff00;
+                margin-top: 20px;
+                line-height: 1.4;
+            }
+
+            .copyright {
+                text-align: center;
+                font-size: 0.9em;
+                color: #808080;
+                margin-top: 15px;
+                border-top: 1px solid #808080;
+                padding-top: 10px;
+            }
+
+            .blink {
+                animation: blink 1s infinite;
+            }
+
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+            }
+
+            .status-bar {
+                background: #c0c0c0;
+                border: 2px solid;
+                border-color: #808080 #ffffff #ffffff #808080;
+                padding: 4px 8px;
+                margin-top: 15px;
+                font-family: "Press Start 2P", system-ui;
+                font-size: 0.7em;
+                display: flex;
+                justify-content: space-between;
+                line-height: 1.4;
+            }
+
+            .language-switcher {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: #000080;
+                border: 2px solid #000;
+                padding: 5px;
+            }
+            
+            .language-switcher a {
+                font-family: "Press Start 2P", system-ui;
+                color: #fff;
+                text-decoration: none;
+                padding: 5px 10px;
+                background: #000080;
+                border: 2px solid #000;
+                font-size: 0.7em;
+                line-height: 1.4;
+            }
+            
+            .language-switcher a:hover {
+                background: #0000ff;
+                color: #ffff00;
+            }
+            
+            .language-current {
+                background: #0000ff !important;
+                color: #ffff00 !important;
+            }
+
+            .news-section {
+                background: #ff00ff;
+                border: 3px solid #800080;
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .news-section h2 {
+                color: #000;
+                font-size: 1em;
+                margin-bottom: 10px;
+                text-align: center;
+                text-decoration: underline;
+                line-height: 1.4;
+            }
+
+            .news-item {
+                background: #ffffff;
+                border: 2px solid #000;
+                padding: 10px;
+                margin: 8px 0;
+            }
+
+            .news-date {
+                color: #0000ff;
+                font-weight: bold;
+                font-size: 0.9em;
+                margin-bottom: 5px;
+            }
+
+            .news-title {
+                color: #000;
+                font-size: 1.1em;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .news-content {
+                color: #000;
+                font-size: 1em;
+                line-height: 1.3;
+            }
+
+            .news-more {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .news-more a {
+                color: #0000ff;
+                text-decoration: none;
+                font-weight: bold;
+            }
+
+            .news-more a:hover {
+                color: #ff0000;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="language-switcher">
+                <a href="index.html" class="language-current">EN</a>
+                <a href="index-ru.html">RU</a>
+            </div>
+            
+            <h1>ELEVATOR TO NOWHERE</h1>
+            
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="comic.html">COMIC</a></li>
+                    <li><a href="archive.html">ARCHIVE</a></li>
+                    <li><a href="news.html">NEWS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            
+            <div class="content">
+                <div class="welcome-text">
+                    <p>🚪 <strong>WELCOME TO THE ELEVATOR!</strong> 🚪</p>
+                    <p>Your goal is to reach the core. But the elevator is blocked. Walk, rookie!</p>
+                    <p>This is a surreal webcomic experience from the depths of the internet. Updated weekly with new bizarre floors and strange encounters.</p>
+                </div>
+
+                <div class="news-section">
+                    <h2>📢 LATEST NEWS</h2>
+                    
+                    <div class="news-item">
+                        <div class="news-date">[12/19/2024]</div>
+                        <div class="news-title">🚀 WEBSITE LAUNCHED!</div>
+                        <div class="news-content">Official launch of Elevator to Nowhere website. All systems operational.</div>
+                    </div>
+
+                    <div class="news-more">
+                        <a href="news.html">MORE NEWS ▶</a>
+                    </div>
+                </div>
+
+                <div class="comic-preview">
+                    <h2>LATEST COMIC</h2>
+                    <div class="comic-image">
+                        [ CLASSIFIED ]
+                    </div>
+                    <p>CLASSIFIED</p>
+                </div>
+
+                <div class="latest-updates">
+                    <h3>🔔 LATEST UPDATES</h3>
+                    <ul class="update-list">
+                        <li>Website launched - Welcome!</li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="visitor-counter">
+                    VISITORS: <span class="blink">004237</span>
+                </div>
+            </div>
+
+            <div class="status-bar">
+                <span>📅 Last updated: 05/10/2025</span>
+                <span>⭐ Best viewed in 800x600</span>
+            </div>
+
+            <div class="copyright">
+                © 2025 ELEVATOR TO NOWHERE | MADE WITH 100% ZAEBOM
+            </div>
+        </div>
+    </body>
+</html>

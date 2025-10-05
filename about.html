@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>elevator to nowhere - About</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: #000;
+                background-image: 
+                    linear-gradient(45deg, #111 25%, transparent 25%),
+                    linear-gradient(-45deg, #111 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, #111 75%),
+                    linear-gradient(-45deg, transparent 75%, #111 75%);
+                background-size: 20px 20px;
+                background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                image-rendering: pixelated;
+            }
+
+            .main {
+                background: #c0c0c0;
+                padding: 20px;
+                width: 90%;
+                max-width: 800px;
+                border: 4px solid;
+                border-color: #ffffff #808080 #808080 #ffffff;
+                box-shadow: 4px 4px 0px #000;
+            }
+
+            h1, .menu a, h2, .warning-box, .status-bar {
+                font-family: "Press Start 2P", system-ui;
+                font-weight: 400;
+                font-style: normal;
+                image-rendering: pixelated;
+            }
+
+            p, li, .about-section p, .who-text, .update-schedule p, .contact-links a, .credits p {
+                font-family: 'VT323', monospace;
+                font-size: 1.2em;
+                line-height: 1.4;
+            }
+
+            h1 {
+                text-align: center;
+                color: #000;
+                font-size: 1.8em;
+                margin-bottom: 20px;
+                text-shadow: 2px 2px 0px #808080;
+                background: #0000ff;
+                color: #ffff00;
+                padding: 10px;
+                border: 2px solid #000;
+                margin: 0 -10px 20px -10px;
+                line-height: 1.4;
+            }
+
+            h2 {
+                color: #000;
+                font-size: 1em;
+                margin: 25px 0 15px 0;
+                background: #ffff00;
+                padding: 8px;
+                border: 2px solid #000;
+                text-align: center;
+                line-height: 1.4;
+            }
+
+            .menu {
+                background: #000080;
+                padding: 0;
+                margin: 0 0 20px 0;
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                border: 2px solid #000;
+            }
+
+            .menu li {
+                margin: 0;
+                border-right: 2px solid #000;
+            }
+
+            .menu li:last-child {
+                border-right: none;
+            }
+
+            .menu a {
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                padding: 12px 20px;
+                font-size: 12px;
+                transition: none;
+                background: #000080;
+                line-height: 1.4;
+            }
+
+            .menu a:hover {
+                background: #0000ff;
+                color: #ffff00;
+                transform: none;
+            }
+
+            .about-content {
+                margin-top: 20px;
+            }
+
+            .about-section {
+                background: #ffffff;
+                padding: 15px;
+                border: 2px solid #000;
+                margin-bottom: 20px;
+            }
+
+            .about-section p {
+                font-size: 1.1em;
+                line-height: 1.4;
+                color: #000;
+                margin-bottom: 12px;
+            }
+
+            .who-text {
+                text-align: center;
+                font-size: 3em;
+                color: #c0c0c0;
+                font-weight: bold;
+                text-shadow: 2px 2px 0px #808080;
+                margin: 30px 0;
+                font-style: italic;
+                opacity: 0.7;
+            }
+
+            .update-schedule {
+                background: #00ff00;
+                padding: 12px;
+                border: 3px dashed #008000;
+                text-align: center;
+                margin: 20px 0;
+            }
+
+            .update-schedule p {
+                font-size: 1.2em;
+                color: #000;
+                margin: 0;
+                font-weight: bold;
+            }
+
+            .contact-links {
+                display: flex;
+                justify-content: center;
+                gap: 15px;
+                margin-top: 25px;
+                flex-wrap: wrap;
+            }
+
+            .contact-links a {
+                font-size: 1em;
+                color: #000;
+                text-decoration: none;
+                padding: 10px 15px;
+                background: #c0c0c0;
+                border: 2px solid;
+                border-color: #ffffff #808080 #808080 #ffffff;
+                font-weight: bold;
+            }
+
+            .contact-links a:hover {
+                background: #0000ff;
+                color: #ffff00;
+                transform: none;
+            }
+
+            .credits {
+                text-align: center;
+                margin-top: 25px;
+                padding-top: 15px;
+                border-top: 2px solid #808080;
+            }
+
+            .credits p {
+                color: #808080;
+                font-size: 0.9em;
+                margin: 5px 0;
+            }
+
+            .status-bar {
+                background: #c0c0c0;
+                border: 2px solid;
+                border-color: #808080 #ffffff #ffffff #808080;
+                padding: 4px 8px;
+                margin-top: 20px;
+                font-size: 0.7em;
+                display: flex;
+                justify-content: space-between;
+                line-height: 1.4;
+            }
+
+            .blink {
+                animation: blink 1s infinite;
+            }
+
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+            }
+
+            .warning-box {
+                background: #ff0000;
+                color: #ffff00;
+                padding: 10px;
+                border: 2px solid #000;
+                margin: 15px 0;
+                text-align: center;
+                font-weight: bold;
+                font-size: 0.8em;
+                line-height: 1.4;
+            }
+
+            .language-switcher {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: #000080;
+                border: 2px solid #000;
+                padding: 5px;
+            }
+            
+            .language-switcher a {
+                font-family: "Press Start 2P", system-ui;
+                color: #fff;
+                text-decoration: none;
+                padding: 5px 10px;
+                background: #000080;
+                border: 2px solid #000;
+                font-size: 0.7em;
+                line-height: 1.4;
+            }
+            
+            .language-switcher a:hover {
+                background: #0000ff;
+                color: #ffff00;
+            }
+            
+            .language-current {
+                background: #0000ff !important;
+                color: #ffff00 !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <div class="language-switcher">
+                <a href="about.html" class="language-current">EN</a>
+                <a href="about-ru.html">RU</a>
+            </div>
+
+            <h1>ELEVATOR TO NOWHERE</h1>
+            
+            <nav>
+                <ul class="menu">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="comic.html">COMIC</a></li>
+                    <li><a href="archive.html">ARCHIVE</a></li>
+                    <li><a href="news.html">NEWS</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+
+            <div class="warning-box">
+                ⚠️ OFFICIAL SITE INFORMATION - AUTHORIZED PERSONNEL ONLY ⚠️
+            </div>
+            
+            <div class="about-content">
+                <div class="about-section">
+                    <h2>ABOUT THE COMIC</h2>
+                        <p>"ELEVATOR TO NOWHERE" IS A SURREAL WEBCOMIC THAT TELLS THE STORY OF ███████'S JOURNEY TO THE CENTER OF THE WORLD.</p>
+                        <p>EACH FLOOR OPENS UP A NEW STRANGE DIMENSION, UNUSUAL CHARACTERS, DIFFERENT PHYSICS AND LOGIC. DON'T TURN INTO AN APPLE.</p>
+                    </div>
+
+                    <div class="about-section">
+                        <h2>PLOT</h2>
+                        <p>WHAT STARTED AS AN ORDINARY DAY QUICKLY TURNED INTO AN ENDLESS WALK THROUGH IMPOSSIBLE SPACES. THE FLOORS DON'T FOLLOW NUMERICAL ORDER, TIME BEHAVES STRANGELY, AND EVERY DOOR OPENING REVEALS A NEW MYSTERY.</p>
+    <p>AND WHERE TO GO?</p>
+
+                <div class="about-section">
+                    <h2>MAIN CHARACTERS</h2>
+                    <div class="who-text">WHO???</div>
+                </div>
+
+                <div class="update-schedule">
+                    <p>📅 <span class="blink">NEW PAGES SOMETIME!</span> 📅</p>
+                </div>
+
+                <div class="about-section">
+                    <h2>CREATOR</h2>
+                    <p>THIS COMIC WAS CREATED BY A LONELY AND BORED ENTITY WHO SPENDS TOO MUCH TIME IN ELEVATORS AND OTHER SHIT. THE CREATOR BELIEVES THAT THE BEST STORIES HAPPEN IN THE SPACE BETWEEN REALITY AND BETWEEN DIMENSIONS.</p>
+                    <p>IDENTITY: <span class="blink">CLASSIFIED</span></p>
+                </div>
+
+                <div class="contact-links">
+                    <a href="mailto:watchmakeraxe404@gmail.com">📧 EMAIL</a>
+                    <a href="https://t.me/elevatortonowhere">📱 TELEGRAM</a>
+                </div>
+
+                <div class="status-bar">
+                    <span>🔒 SITE STATUS: SECURE</span>
+                    <span>👁️ VISITORS: <span class="blink">004237</span></span>
+                </div>
+
+                <div class="credits">
+                    <p>MADE WITH ❤️ AND EXISTENTIAL DREAD</p>
+                    <p>© 2025 ELEVATOR TO NOWHERE | UNDER CONSTRUCTION SINCE 1999</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
