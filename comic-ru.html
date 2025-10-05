@@ -363,6 +363,20 @@
             justify-content: center;
         }
 
+        /* СТИЛИ ДЛЯ УВЕЛИЧЕНИЯ ИЗОБРАЖЕНИЙ */
+        .comic-slider .slide img {
+            transform: scale(1.15);
+            transform-origin: center center;
+            max-width: 110%;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .comic-slider .touch-area {
+            overflow: visible;
+            padding: 20px 0;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 5px;
@@ -454,6 +468,15 @@
             .touch-area {
                 min-height: 150px;
             }
+
+            .comic-slider .slide img {
+                transform: scale(1.08);
+                max-width: 105%;
+            }
+            
+            .comic-slider .touch-area {
+                padding: 15px 0;
+            }
         }
 
         @media (max-width: 480px) {
@@ -495,6 +518,15 @@
             .touch-area {
                 min-height: 120px;
             }
+
+            .comic-slider .slide img {
+                transform: scale(1.05);
+                max-width: 102%;
+            }
+            
+            .comic-slider .touch-area {
+                padding: 10px 0;
+            }
         }
 
         @media (max-width: 768px) and (orientation: portrait) {
@@ -510,6 +542,80 @@
             
             .comic-container {
                 margin-top: 5px;
+            }
+        
+        }
+
+        .comic-slider {
+            position: relative;
+            background: #000;
+            padding: 8px;
+            border: 3px solid #ff0000;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .touch-area {
+            position: relative;
+            width: 100%;
+            min-height: 200px;
+            touch-action: pan-y;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .slide img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #fff;
+            image-rendering: pixelated;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .slide-content {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .comic-slider .slide img {
+            transform: scale(1);
+            transform-origin: center center;
+            max-width: 100%;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .comic-slider .touch-area {
+            overflow: hidden;
+            padding: 0;
+        }
+
+        @media (max-width: 768px) {
+            .comic-slider .slide img {
+                transform: scale(1);
+                max-width: 100%;
+            }
+            
+            .comic-slider .touch-area {
+                padding: 0;
+                min-height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .comic-slider .slide img {
+                transform: scale(1);
+                max-width: 100%;
+            }
+            
+            .comic-slider .touch-area {
+                padding: 0;
+                min-height: 120px;
             }
         }
     </style>
@@ -551,7 +657,7 @@
         </div>
 
         <div class="slide-counter">
-            ПАНЕЛЬ <span id="current-slide">1</span> ИЗ <span id="total-slides">3</span>
+            ПАНЕЛЬ <span id="current-slide">1</span> ИЗ <span id="total-slides">4</span>
         </div>
 
         <div class="comic-slider">
@@ -559,11 +665,10 @@
             <div class="slide active" data-slide="1">
                 <div class="slide-content">
                     <div class="touch-area">
-                        <img src="images/page1-panel1.png" alt="Панель 1" 
+                        <img src="./IMG/page1/panel1-ru.webp" alt="Панель 1" 
                              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23333%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>СТРАНИЦА 1 - ПАНЕЛЬ 1</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        🚪 ДВЕРИ ЛИФТА ОТКРЫВАЮТСЯ... ЧТО ЖДЕТ ВПЕРЕДИ? 🚪
                     </div>
                 </div>
             </div>
@@ -572,11 +677,10 @@
             <div class="slide" data-slide="2">
                 <div class="slide-content">
                     <div class="touch-area">
-                        <img src="images/page1-panel2.png" alt="Панель 2"
+                        <img src="./IMG/page1/panel2.webp" alt="Панель 2"
                              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23555%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>СТРАНИЦА 1 - ПАНЕЛЬ 2</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        🔦 не 🔦
                     </div>
                 </div>
             </div>
@@ -585,11 +689,23 @@
             <div class="slide" data-slide="3">
                 <div class="slide-content">
                     <div class="touch-area">
-                        <img src="images/page1-panel3.png" alt="Панель 3"
+                        <img src="./IMG/page1/panel3.webp" alt="Панель 3"
                              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23777%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>СТРАНИЦА 1 - ПАНЕЛЬ 3</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        👁️ ха 👁️
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 4 -->
+            <div class="slide" data-slide="4">
+                <div class="slide-content">
+                    <div class="touch-area">
+                        <img src="./IMG/page1/panel4.webp" alt="Панель 4"
+                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23999%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>СТРАНИЦА 1 - ПАНЕЛЬ 4</text></svg>'">
+                    </div>
+                    <div class="slide-text">
+                        Ну и где я?
                     </div>
                 </div>
             </div>

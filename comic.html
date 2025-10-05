@@ -346,7 +346,6 @@
             color: #ffff00;
         }
 
-        /* ИСПРАВЛЕНИЕ: Убираем фиксированную высоту и делаем контейнер адаптивным */
         .touch-area {
             position: relative;
             width: 100%;
@@ -451,8 +450,7 @@
                 padding: 5px;
                 margin: 10px 0;
             }
-            
-            /* Адаптивная высота для мобильных устройств */
+
             .touch-area {
                 min-height: 150px;
             }
@@ -553,7 +551,7 @@
         </div>
 
         <div class="slide-counter">
-            PANEL <span id="current-slide">1</span> OF <span id="total-slides">3</span>
+            PANEL <span id="current-slide">1</span> OF <span id="total-slides">4</span>
         </div>
 
         <div class="comic-slider">
@@ -561,11 +559,10 @@
             <div class="slide active" data-slide="1">
                 <div class="slide-content">
                     <div class="touch-area">
-                        <img src="images/page1-panel1.png" alt="Panel 1" 
+                        <img src="./IMG/page1/panel1.webp" alt="Panel 1" 
                              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23333%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 1</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        🚪 THE ELEVATOR DOORS SLIDE OPEN... WHAT LIES BEYOND? 🚪
                     </div>
                 </div>
             </div>
@@ -574,11 +571,10 @@
             <div class="slide" data-slide="2">
                 <div class="slide-content">
                     <div class="touch-area">
-                        <img src="images/page1-panel2.png" alt="Panel 2"
+                        <img src="./IMG/page1/panel2.webp" alt="Panel 2"
                              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23555%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 2</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        🔦 no 🔦
                     </div>
                 </div>
             </div>
@@ -587,11 +583,23 @@
             <div class="slide" data-slide="3">
                 <div class="slide-content">
                     <div class="touch-area">
-                        <img src="images/page1-panel3.png" alt="Panel 3"
+                        <img src="./IMG/page1/panel3.webp" alt="Panel 3"
                              onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23777%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 3</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        👁️ ha 👁️
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 4 -->
+            <div class="slide" data-slide="4">
+                <div class="slide-content">
+                    <div class="touch-area">
+                        <img src="./IMG/page1/panel4.webp" alt="Panel 4"
+                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23999%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 4</text></svg>'">
+                    </div>
+                    <div class="slide-text">
+                        Where the hell am I?
                     </div>
                 </div>
             </div>

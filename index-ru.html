@@ -555,6 +555,33 @@
                 max-width: 120px;
             }
         }
+
+        .comic-image {
+            width: 100%;
+            height: 150px;
+            background: 
+                repeating-linear-gradient(45deg, #000, #000 2px, #fff 2px, #fff 4px);
+            border: 2px solid #000;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Press Start 2P", system-ui;
+            color: #000;
+            font-size: 0.8em;
+            line-height: 1.4;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .comic-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -609,6 +636,12 @@
                 <h2>📢 ПОСЛЕДНИЕ НОВОСТИ</h2>
                 
                 <div class="news-item">
+                    <div class="news-date">[06.10.2025]</div>
+                    <div class="news-title">🎉 ПЕРВЫЕ ЧЕТЫРЕ ПАНЕЛИ ПЕРВОЙ СТРАНИЦЫ ВЫШЛИ!</div>
+                    <div class="news-content">Я сам ахуел.</div>
+                </div>
+                
+                <div class="news-item">
                     <div class="news-date">[05.10.2025]</div>
                     <div class="news-title">📧 ЯВИЛСЯ ФОРУМ!</div>
                     <div class="news-content">Теперь можете обсуждать комикс и не только на форуме!</div>
@@ -628,17 +661,19 @@
             <div class="comic-preview">
                 <h2>ПОСЛЕДНИЙ КОМИКС</h2>
                 <div class="comic-image">
-                    [ ЗАСЕКРЕЧЕНО ]
+                    <img src="./IMG/page1/panel1-ru.webp" alt="Превью комикса" 
+                        onerror="this.style.display='none'; this.parentNode.innerHTML='[ ЗАСЕКРЕЧЕНО ]';"
+                        style="max-width: 100%; height: auto; border: 2px solid #000;">
                 </div>
-                <p>ЗАСЕКРЕЧЕНО</p>
+                <p>СТРАНИЦА 1 - ПАНЕЛИ 1-4</p>
             </div>
 
             <div class="latest-updates">
                 <h3>🔔 ПОСЛЕДНИЕ ОБНОВЛЕНИЯ</h3>
                 <ul class="update-list">
+                    <li>ПЕРВЫЕ ЧЕТЫРЕ ПАНЕЛИ ПЕРВОЙ СТРАНИЦЫ ВЫШЛИ!</li>
                     <li>Да здравствует форум!</li>
                     <li>Сайт запущен - Добро пожаловать!</li>
-                    <li></li>
                     <li></li>
                 </ul>
             </div>
@@ -649,7 +684,7 @@
         </div>
 
         <div class="status-bar">
-            <span>📅 Последнее обновление: 05.10.2025</span>
+            <span>📅 Последнее обновление: 06.10.2025</span>
             <span>⭐ Лучше просматривать в 800x600</span>
         </div>
 
