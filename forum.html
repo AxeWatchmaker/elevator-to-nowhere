@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum - Elevator to Nowhere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            background-image: 
+                linear-gradient(45deg, #111 25%, transparent 25%),
+                linear-gradient(-45deg, #111 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #111 75%),
+                linear-gradient(-45deg, transparent 75%, #111 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            image-rendering: pixelated;
+        }
+
+        .forum-container {
+            background: #c0c0c0;
+            padding: 20px;
+            max-width: 1000px;
+            border: 4px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: 4px 4px 0px #000;
+            margin: 20px;
+        }
+
+        h1, .menu a, .section-title, .btn, .status-bar, .language-switcher a {
+            font-family: "Press Start 2P", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            image-rendering: pixelated;
+        }
+
+        .forum-description, .copyright, .telegram-promo {
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+            line-height: 1.4;
+        }
+
+        .menu {
+            background: #000080;
+            padding: 0;
+            margin: 0 0 20px 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            border: 2px solid #000;
+        }
+
+        .menu li {
+            margin: 0;
+            border-right: 2px solid #000;
+        }
+
+        .menu li:last-child {
+            border-right: none;
+        }
+
+        .menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 12px;
+            transition: none;
+            background: #000080;
+            line-height: 1.4;
+        }
+
+        .menu a:hover {
+            background: #0000ff;
+            color: #ffff00;
+            transform: none;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #808080;
+            background: #0000ff;
+            color: #ffff00;
+            padding: 10px;
+            border: 2px solid #000;
+            margin: 0 -10px 20px -10px;
+            line-height: 1.4;
+        }
+
+        .forum-description {
+            background: #ffff00;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #000;
+            text-align: center;
+        }
+
+        .giscus-section {
+            background: #ffffff;
+            border: 2px solid #000;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .giscus-section .section-title {
+            background: #000080;
+            color: #fff;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        .btn {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin: 5px 0;
+        }
+
+        .btn:hover {
+            background: #0000ff;
+            color: #ffff00;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #000080;
+            border: 2px solid #000;
+            padding: 5px;
+        }
+        
+        .language-switcher a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background: #000080;
+            border: 2px solid #000;
+            font-size: 0.7em;
+            line-height: 1.4;
+        }
+        
+        .language-switcher a:hover {
+            background: #0000ff;
+            color: #ffff00;
+        }
+        
+        .language-current {
+            background: #0000ff !important;
+            color: #ffff00 !important;
+        }
+
+        .status-bar {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 4px 8px;
+            margin-top: 15px;
+            font-size: 0.7em;
+            display: flex;
+            justify-content: space-between;
+            line-height: 1.4;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9em;
+            color: #808080;
+            margin-top: 15px;
+            border-top: 1px solid #808080;
+            padding-top: 10px;
+        }
+
+        .telegram-promo {
+            background: #0088cc;
+            color: white;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #000;
+            text-align: center;
+        }
+
+        .telegram-promo a {
+            color: #ffff00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .instructions {
+            background: #e0e0e0;
+            border: 2px solid #000;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+        }
+
+        .instructions ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="forum-container">
+        <div class="language-switcher">
+            <a href="forum.html" class="language-current">EN</a>
+            <a href="forum-ru.html">RU</a>
+        </div>
+
+        <h1>FORUM - ELEVATOR TO NOWHERE</h1>
+
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="comic.html">COMIC</a></li>
+                <li><a href="forum.html" style="background: #0000ff; color: #ffff00;">FORUM</a></li>
+                <li><a href="archive.html">ARCHIVE</a></li>
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <div class="forum-description">
+            🗣️ WELCOME TO THE FORUM! DISCUSS THE PLOT, SHARE THEORIES AND ASK QUESTIONS!
+        </div>
+
+        <div class="instructions">
+            <strong>💡 HOW TO JOIN THE DISCUSSION:</strong>
+            <ol>
+                <li>Click "Login" below</li>
+                <li>Sign in with your GitHub account</li>
+                <li>Leave comments and reactions!</li>
+            </ol>
+        </div>
+
+        <div class="giscus-section">
+            <div class="section-title">💬 COMIC DISCUSSION</div>
+            <div id="giscus-container"></div>
+        </div>
+
+        <div class="telegram-promo">
+            <p>💫 <strong>JOIN THE DISCUSSION ON TELEGRAM!</strong></p>
+            <p>Quick polls, exclusive content and more</p>
+            <a href="https://t.me/your_comic_chat">📱 GO TO TG</a>
+        </div>
+
+        <div class="status-bar">
+            <span>💬 Comment system: Giscus</span>
+            <span>🔧 Powered by GitHub</span>
+        </div>
+
+        <div class="copyright">
+            © 2025 ELEVATOR TO NOWHERE | FORUM | MADE WITH 100% ZAEBOM
+        </div>
+    </div>
+
+    <script>
+        function loadGiscus() {
+            const script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', 'AxeWatchmaker/elevator-to-nowhere');
+            script.setAttribute('data-repo-id', 'REPO_ID');
+            script.setAttribute('data-category', 'General');
+            script.setAttribute('data-category-id', 'CATEGORY_ID');
+            script.setAttribute('data-mapping', 'pathname');
+            script.setAttribute('data-strict', '0');
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'light');
+            script.setAttribute('data-lang', 'en');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            
+            document.getElementById('giscus-container').appendChild(script);
+        }
+
+        document.addEventListener('DOMContentLoaded', loadGiscus);
+    </script>
+</body>
+</html>

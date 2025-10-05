@@ -1,329 +1,575 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>elevator to nowhere - Comic</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet">
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                background: #000;
-                background-image: 
-                    linear-gradient(45deg, #111 25%, transparent 25%),
-                    linear-gradient(-45deg, #111 25%, transparent 25%),
-                    linear-gradient(45deg, transparent 75%, #111 75%),
-                    linear-gradient(-45deg, transparent 75%, #111 75%);
-                background-size: 20px 20px;
-                background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-                min-height: 100vh;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                image-rendering: pixelated;
-            }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevator to Nowhere - Comic Reader</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            background-image: 
+                linear-gradient(45deg, #111 25%, transparent 25%),
+                linear-gradient(-45deg, #111 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #111 75%),
+                linear-gradient(-45deg, transparent 75%, #111 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            image-rendering: pixelated;
+        }
 
-            .main {
-                background: #c0c0c0;
-                padding: 20px;
-                width: 90%;
-                max-width: 800px;
-                border: 4px solid;
-                border-color: #ffffff #808080 #808080 #ffffff;
-                box-shadow: 4px 4px 0px #000;
-            }
+        .comic-container {
+            background: #c0c0c0;
+            padding: 20px;
+            max-width: 900px;
+            border: 4px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: 4px 4px 0px #000;
+        }
 
-            h1, .menu a, .page-info, .comic-navigation a, .comic-controls, .page-counter, .status-bar {
-                font-family: "Press Start 2P", system-ui;
-                font-weight: 400;
-                font-style: normal;
-                image-rendering: pixelated;
-            }
+        h1, .menu a, .page-indicator, .slide-counter, .progress-section, 
+        .nav-btn, .control-btn, .status-bar, .language-switcher a {
+            font-family: "Press Start 2P", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            image-rendering: pixelated;
+        }
 
-            p, .comic-description, .copyright {
-                font-family: 'VT323', monospace;
-                font-size: 1.2em;
-                line-height: 1.4;
-            }
+        .slide-text, .save-status, .copyright {
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+            line-height: 1.4;
+        }
 
-            h1 {
-                text-align: center;
-                color: #000;
-                font-size: 1.8em;
-                margin-bottom: 20px;
-                text-shadow: 2px 2px 0px #808080;
-                background: #0000ff;
-                color: #ffff00;
-                padding: 10px;
-                border: 2px solid #000;
-                margin: 0 -10px 20px -10px;
-                line-height: 1.4;
-            }
+        .menu {
+            background: #000080;
+            padding: 0;
+            margin: 0 0 20px 0;
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            border: 2px solid #000;
+        }
 
-            .menu {
-                background: #000080;
-                padding: 0;
-                margin: 0 0 20px 0;
-                list-style: none;
-                display: flex;
-                justify-content: center;
-                border: 2px solid #000;
-            }
+        .menu li {
+            margin: 0;
+            border-right: 2px solid #000;
+        }
 
-            .menu li {
-                margin: 0;
-                border-right: 2px solid #000;
-            }
+        .menu li:last-child {
+            border-right: none;
+        }
 
-            .menu li:last-child {
-                border-right: none;
-            }
+        .menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            font-size: 12px;
+            transition: none;
+            background: #000080;
+            line-height: 1.4;
+        }
 
-            .menu a {
-                display: block;
-                color: #fff;
-                text-decoration: none;
-                padding: 12px 20px;
-                font-size: 12px;
-                transition: none;
-                background: #000080;
-                line-height: 1.4;
-            }
+        .menu a:hover {
+            background: #0000ff;
+            color: #ffff00;
+            transform: none;
+        }
 
-            .menu a:hover {
-                background: #0000ff;
-                color: #ffff00;
-                transform: none;
-            }
+        .comic-slider {
+            position: relative;
+            background: #000;
+            padding: 10px;
+            border: 3px solid #ff0000;
+            margin: 20px 0;
+        }
 
-            .page-info {
-                text-align: center;
-                margin: 20px 0;
-                font-size: 1em;
-                color: #000;
-                background: #ffff00;
-                padding: 10px;
-                border: 2px solid #000;
-                font-weight: bold;
-                line-height: 1.4;
-            }
+        .slide {
+            display: none;
+            text-align: center;
+        }
 
-            .comic-description {
-                font-size: 1.1em;
-                line-height: 1.4;
-                color: #000;
-                background: #ffffff;
-                padding: 12px;
-                border: 2px solid #000;
-                margin: 15px 0;
-            }
+        .slide.active {
+            display: block;
+        }
 
-            .comic-page {
-                text-align: center;
-                margin: 20px 0;
-                background: #000;
-                padding: 10px;
-                border: 3px solid #ff0000;
-            }
+        .slide img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #fff;
+            image-rendering: pixelated;
+        }
 
-            .comic-page img {
-                max-width: 100%;
-                height: auto;
-                border: 2px solid #fff;
-                image-rendering: pixelated;
-            }
+        .slide-text {
+            background: #ffff00;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #000;
+            font-size: 1.3em;
+            line-height: 1.4;
+            color: #000;
+        }
 
-            .comic-navigation {
-                display: flex;
-                justify-content: space-between;
-                margin: 20px 0;
-                padding: 0;
-                background: #c0c0c0;
-                border: 2px solid;
-                border-color: #808080 #ffffff #ffffff #808080;
-            }
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
 
-            .comic-navigation a {
-                font-size: 0.9em;
-                color: #000;
-                text-decoration: none;
-                padding: 12px 20px;
-                background: #c0c0c0;
-                border: 2px solid;
-                border-color: #ffffff #808080 #808080 #ffffff;
-                margin: 2px;
-                font-weight: bold;
-                line-height: 1.4;
-            }
+        .nav-btn {
+            font-size: 0.9em;
+            padding: 12px 20px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            cursor: pointer;
+            color: #000;
+            text-decoration: none;
+        }
 
-            .comic-navigation a:hover {
-                background: #0000ff;
-                color: #ffff00;
-                transform: none;
-            }
+        .nav-btn:hover:not(.disabled) {
+            background: #0000ff;
+            color: #ffff00;
+        }
 
-            .comic-navigation .disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-                background: #808080;
-                color: #c0c0c0;
-            }
+        .nav-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #808080;
+        }
 
-            .comic-navigation .disabled:hover {
-                background: #808080;
-                color: #c0c0c0;
-            }
+        .page-indicator {
+            text-align: center;
+            background: #00ff00;
+            padding: 10px;
+            border: 2px solid #000;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
 
-            .comic-controls {
-                background: #000;
-                color: #00ff00;
-                padding: 8px;
-                text-align: center;
-                font-size: 0.7em;
-                border: 2px solid #00ff00;
-                margin: 10px 0;
-                line-height: 1.4;
-            }
+        .slide-counter {
+            text-align: center;
+            background: #0000ff;
+            color: #ffff00;
+            padding: 5px;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
 
-            .page-counter {
-                text-align: center;
-                font-size: 0.8em;
-                color: #000;
-                background: #00ff00;
-                padding: 5px;
-                border: 1px solid #000;
-                margin: 10px auto;
-                width: 120px;
-                line-height: 1.4;
-            }
+        .progress-section {
+            background: #000;
+            color: #fff;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00ff00;
+            font-size: 0.8em;
+            line-height: 1.4;
+        }
 
-            .status-bar {
-                background: #c0c0c0;
-                border: 2px solid;
-                border-color: #808080 #ffffff #ffffff #808080;
-                padding: 4px 8px;
-                margin-top: 15px;
-                font-size: 0.7em;
-                display: flex;
-                justify-content: space-between;
-                line-height: 1.4;
-            }
+        .save-status {
+            text-align: center;
+            font-size: 1.2em;
+            margin: 10px 0;
+            min-height: 20px;
+        }
 
-            .copyright {
-                text-align: center;
-                font-size: 0.9em;
-                color: #808080;
-                margin-top: 15px;
-                border-top: 1px solid #808080;
-                padding-top: 10px;
-            }
+        .saved {
+            color: #00ff00;
+        }
 
-            .blink {
-                animation: blink 1s infinite;
-            }
+        .saving {
+            color: #ffff00;
+        }
 
-            @keyframes blink {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0; }
-            }
-.language-switcher {
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                background: #000080;
-                border: 2px solid #000;
-                padding: 5px;
-            }
-            
-            .language-switcher a {
-                font-family: "Press Start 2P", system-ui;
-                color: #fff;
-                text-decoration: none;
-                padding: 5px 10px;
-                background: #000080;
-                border: 2px solid #000;
-                font-size: 0.7em;
-                line-height: 1.4;
-            }
-            
-            .language-switcher a:hover {
-                background: #0000ff;
-                color: #ffff00;
-            }
-            
-            .language-current {
-                background: #0000ff !important;
-                color: #ffff00 !important;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="main">
-            <div class="language-switcher">
-                <a href="comic.html" class="language-current">EN</a>
-                <a href="comic-ru.html">RU</a>
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #000;
+            border: 2px solid #fff;
+            margin: 10px 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: #00ff00;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .control-btn {
+            font-size: 0.7em;
+            padding: 8px 15px;
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            cursor: pointer;
+        }
+
+        .control-btn:hover {
+            background: #0000ff;
+            color: #ffff00;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #000080;
+            border: 2px solid #000;
+            padding: 5px;
+        }
+        
+        .language-switcher a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+            background: #000080;
+            border: 2px solid #000;
+            font-size: 0.7em;
+            line-height: 1.4;
+        }
+        
+        .language-switcher a:hover {
+            background: #0000ff;
+            color: #ffff00;
+        }
+        
+        .language-current {
+            background: #0000ff !important;
+            color: #ffff00 !important;
+        }
+
+        .status-bar {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            padding: 4px 8px;
+            margin-top: 15px;
+            font-size: 0.7em;
+            display: flex;
+            justify-content: space-between;
+            line-height: 1.4;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9em;
+            color: #808080;
+            margin-top: 15px;
+            border-top: 1px solid #808080;
+            padding-top: 10px;
+        }
+
+        .blink {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #808080;
+            background: #0000ff;
+            color: #ffff00;
+            padding: 10px;
+            border: 2px solid #000;
+            margin: 0 -10px 20px -10px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="comic-container">
+        <div class="language-switcher">
+            <a href="comic.html" class="language-current">EN</a>
+            <a href="comic-ru.html">RU</a>
+        </div>
+
+        <h1>ELEVATOR TO NOWHERE</h1>
+
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="comic.html" style="background: #0000ff; color: #ffff00;">COMIC</a></li>
+                <li><a href="forum.html">FORUM</a></li>
+                <li><a href="archive.html">ARCHIVE</a></li>
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <div class="page-indicator">
+            PAGE 1 - THE BEGINNING
+        </div>
+
+        <div class="progress-section">
+            <div>PROGRESS: <span id="progress-text">0%</span></div>
+            <div class="progress-bar">
+                <div class="progress" id="comic-progress"></div>
             </div>
-            
-            <h1>ELEVATOR TO NOWHERE</h1>
-            
-            <nav>
-                <ul class="menu">
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="comic.html">COMIC</a></li>
-                    <li><a href="archive.html">ARCHIVE</a></li>
-                    <li><a href="news.html">NEWS</a></li>
-                    <li><a href="about.html">ABOUT</a></li>
-                </ul>
-            </nav>
-            
-            <div class="page-info">
-                PAGE 1 - THE BEGINNING
-            </div>
-            
-            <div class="comic-description">
-                🚪 OUR JOURNEY BEGINS... NOW! 🚪
+            <div>LAST READ: <span id="last-read">NEVER</span></div>
+        </div>
+
+        <div class="slide-counter">
+            PANEL <span id="current-slide">1</span> OF <span id="total-slides">3</span>
+        </div>
+
+        <div class="comic-slider">
+            <!-- Слайд 1 -->
+            <div class="slide active" data-slide="1">
+                <img src="images/page1-panel1.png" alt="Panel 1" 
+                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23333%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 1</text></svg>'">
+                <div class="slide-text">
+                    🚪 THE ELEVATOR DOORS SLIDE OPEN... WHAT LIES BEYOND? 🚪
+                </div>
             </div>
 
-            <div class="comic-controls">
-                USE ARROW KEYS TO NAVIGATE | SPACEBAR FOR FULLSCREEN
-            </div>
-            
-            <div class="comic-page">
-                <img src="images/page1.png" alt="Comic Page 1 - The Beginning" 
-                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22600%22 viewBox=%220 0 800 600%22><rect width=%22800%22 height=%22600%22 fill=%22%23000%22/><rect x=%2210%22 y=%2210%22 width=%22780%22 height=%22580%22 fill=%22%23c0c0c0%22 stroke=%22%23fff%22 stroke-width=%222%22/><text x=%22400%22 y=%22300%22 font-family=%22Press Start 2P%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23000%22>PAGE 1 - THE BEGINNING</text><text x=%22400%22 y=%22330%22 font-family=%22Press Start 2P%22 font-size=%2212%22 text-anchor=%22middle%22 fill=%22%23000%22>COMIC IMAGE PLACEHOLDER</text><rect x=%2250%22 y=%22400%22 width=%22700%22 height=%2250%22 fill=%22%23000%22 stroke=%22%23fff%22 stroke-width=%222%22/><text x=%22400%22 y=%22430%22 font-family=%22Press Start 2P%22 font-size=%2210%22 text-anchor=%22middle%22 fill=%22%23fff%22>THE ELEVATOR DOORS SLIDE OPEN...</text></svg>'">
-            </div>
-
-            <div class="page-counter">
-                PAGE: <span class="blink">001</span>/???
-            </div>
-            
-            <div class="comic-navigation">
-                <a href="#" class="disabled">◀◀ PREVIOUS</a>
-                <a href="page2.html">NEXT ▶▶</a>
+            <!-- Слайд 2 -->
+            <div class="slide" data-slide="2">
+                <img src="images/page1-panel2.png" alt="Panel 2"
+                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23555%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 2</text></svg>'">
+                <div class="slide-text">
+                    🔦 no 🔦
+                </div>
             </div>
 
-            <div class="status-bar">
-                <span>📖 Reading: Page 1</span>
-                <span>🕐 Loaded: 100%</span>
-            </div>
-
-            <div class="copyright">
-                © 2025 ELEVATOR TO NOWHERE | MADE WITH 100% ZAEBOM
+            <!-- Слайд 3 -->
+            <div class="slide" data-slide="3">
+                <img src="images/page1-panel3.png" alt="Panel 3"
+                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23777%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 3</text></svg>'">
+                <div class="slide-text">
+                    👁️ ha 👁️
+                </div>
             </div>
         </div>
 
-        <script>
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight') {
-                    window.location.href = 'page2.html';
-                }
-                if (e.key === 'ArrowLeft') {
-                }
+        <div class="save-status" id="save-status"></div>
+
+        <div class="navigation">
+            <button class="nav-btn" id="prev-btn" onclick="previousNavigation()">◀◀ PREVIOUS</button>
+            <button class="nav-btn" id="next-btn" onclick="nextNavigation()">NEXT PANEL ▶▶</button>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="saveProgress()">💾 SAVE</button>
+            <button class="control-btn" onclick="resetProgress()">🔄 RESET</button>
+            <button class="control-btn" onclick="goToLastRead()">📖 CONTINUE</button>
+        </div>
+
+        <div class="status-bar">
+            <span>📖 Reading: Page 1</span>
+            <span>🕐 Progress: <span id="status-progress">0%</span></span>
+        </div>
+
+        <div class="copyright">
+            © 2025 ELEVATOR TO NOWHERE | MADE WITH 100% ZAEBOM
+        </div>
+    </div>
+
+    <script>
+        const COMIC_ID = 'elevator_to_nowhere_page1';
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function loadProgress() {
+            const saved = localStorage.getItem(COMIC_ID);
+            if (saved) {
+                const progress = JSON.parse(saved);
+                currentSlide = progress.currentSlide || 1;
+                updateLastReadDisplay(progress.timestamp);
+                showSaveStatus('Progress loaded!', 'saved');
+            } else {
+                updateLastReadDisplay(null);
+            }
+            updateSlider();
+        }
+
+        function saveProgress() {
+            const progress = {
+                currentSlide: currentSlide,
+                timestamp: new Date().toISOString(),
+                totalSlides: totalSlides,
+                progress: Math.round(((currentSlide - 1) / (totalSlides - 1)) * 100)
+            };
+            
+            localStorage.setItem(COMIC_ID, JSON.stringify(progress));
+            updateLastReadDisplay(progress.timestamp);
+            showSaveStatus('Progress saved!', 'saved');
+        }
+
+        function autoSave() {
+            showSaveStatus('Saving...', 'saving');
+            setTimeout(() => {
+                saveProgress();
+            }, 500);
+        }
+
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset your progress?')) {
+                localStorage.removeItem(COMIC_ID);
+                currentSlide = 1;
+                updateSlider();
+                updateLastReadDisplay(null);
+                showSaveStatus('Progress reset!', 'saved');
+            }
+        }
+
+        function goToLastRead() {
+            const saved = localStorage.getItem(COMIC_ID);
+            if (saved) {
+                const progress = JSON.parse(saved);
+                currentSlide = progress.currentSlide;
+                updateSlider();
+                showSaveStatus('Continuing from last read...', 'saved');
+            } else {
+                showSaveStatus('No saved progress found!', 'saving');
+            }
+        }
+
+        function updateLastReadDisplay(timestamp) {
+            const lastReadElement = document.getElementById('last-read');
+            if (timestamp) {
+                const date = new Date(timestamp);
+                lastReadElement.textContent = date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
+            } else {
+                lastReadElement.textContent = 'NEVER';
+            }
+        }
+
+        function showSaveStatus(message, type) {
+            const statusElement = document.getElementById('save-status');
+            statusElement.textContent = message;
+            statusElement.className = `save-status ${type}`;
+            
+            setTimeout(() => {
+                statusElement.textContent = '';
+                statusElement.className = 'save-status';
+            }, 2000);
+        }
+
+        function updateSlider() {
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
             });
-        </script>
-    </body>
+
+            document.querySelector(`.slide[data-slide="${currentSlide}"]`).classList.add('active');
+
+            document.getElementById('current-slide').textContent = currentSlide;
+            document.getElementById('total-slides').textContent = totalSlides;
+
+            updateProgress();
+
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (currentSlide === 1) {
+                prevBtn.textContent = '◀◀ PREVIOUS PAGE';
+                prevBtn.onclick = function() {
+                    window.location.href = 'index.html';
+                };
+            } else {
+                prevBtn.textContent = '◀◀ PREVIOUS PANEL';
+                prevBtn.onclick = function() {
+                    previousSlide();
+                };
+            }
+
+            if (currentSlide === totalSlides) {
+                nextBtn.textContent = 'NEXT PAGE ▶▶';
+                nextBtn.onclick = function() {
+                    window.location.href = 'page2.html';
+                };
+            } else {
+                nextBtn.textContent = 'NEXT PANEL ▶▶';
+                nextBtn.onclick = function() {
+                    nextSlide();
+                };
+            }
+        }
+
+        function nextNavigation() {
+            if (currentSlide === totalSlides) {
+                window.location.href = 'page2.html';
+            } else {
+                nextSlide();
+            }
+        }
+
+        function previousNavigation() {
+            if (currentSlide === 1) {
+                window.location.href = 'index.html';
+            } else {
+                previousSlide();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentSlide - 1) / (totalSlides - 1)) * 100;
+            document.getElementById('comic-progress').style.width = progress + '%';
+            document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+            document.getElementById('status-progress').textContent = Math.round(progress) + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlider();
+                autoSave();
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlider();
+                autoSave();
+            }
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                nextNavigation();
+            }
+            if (e.key === 'ArrowLeft') {
+                previousNavigation();
+            }
+            if (e.key === 's' && (e.ctrlKey || e.metaKey)) {
+                e.preventDefault();
+                saveProgress();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+
+            window.addEventListener('beforeunload', saveProgress);
+        });
+    </script>
+</body>
 </html>
