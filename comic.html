@@ -123,6 +123,19 @@
             image-rendering: pixelated;
         }
 
+        .gif-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff0000;
+            color: #fff;
+            padding: 4px 8px;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 0.6em;
+            border: 2px solid #fff;
+            z-index: 5;
+        }
+
         .slide-text {
             background: #ffff00;
             padding: 12px;
@@ -454,6 +467,11 @@
             .touch-area {
                 min-height: 150px;
             }
+
+            .gif-indicator {
+                font-size: 0.5em;
+                padding: 3px 6px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -494,6 +512,11 @@
             
             .touch-area {
                 min-height: 120px;
+            }
+
+            .gif-indicator {
+                font-size: 0.4em;
+                padding: 2px 4px;
             }
         }
 
@@ -551,7 +574,7 @@
         </div>
 
         <div class="slide-counter">
-            PANEL <span id="current-slide">1</span> OF <span id="total-slides">4</span>
+            PANEL <span id="current-slide">1</span> OF <span id="total-slides">6</span>
         </div>
 
         <div class="comic-slider">
@@ -596,10 +619,37 @@
                 <div class="slide-content">
                     <div class="touch-area">
                         <img src="./IMG/page1/panel4.webp" alt="Panel 4"
-                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23999%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 4</text></svg>'">
+                            onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23999%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 4</text></svg>'">
                     </div>
                     <div class="slide-text">
-                        Where the hell am I?
+                        <span style="color: #610A2A; font-weight: bold;">Where the hell am I?</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 5 -->
+            <div class="slide" data-slide="5">
+                <div class="slide-content">
+                    <div class="touch-area">
+                        <div class="gif-indicator">GIF</div>
+                        <img src="./IMG/page1/panel5.webp" alt="Panel 5"
+                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23ff00ff%22/><text x=%22400%22 y=%22180%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>ANIMATED PANEL</text><text x=%22400%22 y=%22220%22 font-family=%22monospace%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23fff%22>(GIF ANIMATION)</text></svg>'">
+                    </div>
+                    <div class="slide-text">
+                        Usually say that one shouldn't stand still in the middle of a wasteland. Such stumps are always hit by stones.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Слайд 6 - GIF -->
+            <div class="slide" data-slide="6">
+                <div class="slide-content">
+                    <div class="touch-area">
+                        <img src="./IMG/page1/panel6.gif" alt="Panel 6 - Animated"
+                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22800%22 height=%22400%22><rect width=%22800%22 height=%22400%22 fill=%22%23000%22/><text x=%22400%22 y=%22200%22 font-family=%22monospace%22 font-size=%2220%22 text-anchor=%22middle%22 fill=%22%23fff%22>PAGE 1 - PANEL 6</text></svg>'">
+                    </div>
+                    <div class="slide-text">
+                        Oh, I just voiced my thought. What is this? The law of this world? Stones that fly at white humanoids?
                     </div>
                 </div>
             </div>
