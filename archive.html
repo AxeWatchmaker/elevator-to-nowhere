@@ -655,6 +655,7 @@
                 <ul class="menu" id="mainMenu">
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="comic.html">COMIC</a></li>
+                    <li><a href="gallery.html">GALLERY</a></li>
                     <li><a href="forum.html">FORUM</a></li>
                     <li><a href="archive.html" style="background: #0000ff; color: #ffff00;">ARCHIVE</a></li>
                     <li><a href="news.html">NEWS</a></li>
@@ -684,7 +685,7 @@
                         <a href="comic.html">
                             <div class="thumbnail">[PAGE 1]</div>
                             <div class="page-number">PAGE 001</div>
-                            <div class="page-title">CLASSIFIED</div>
+                            <div class="page-title">PIE WITH POLYGONS</div>
                         </a>
                     </div>
                     <div class="archive-item">
@@ -810,16 +811,47 @@
                 let currentTrackIndex = 0;
                 let isPlaying = false;
                 let isMuted = false;
+                let playedTracks = new Set();
 
-            const tracks = [
-                { name: "Site Theme", src: "music/site theme.m4a" },
-                { name: "Site Theme 2", src: "music/site theme 2.m4a" }
-            ];
+                const tracks = [
+                    { name: "cooking time", src: "music/site theme.m4a" },
+                    { name: "NEW TV", src: "music/site theme 2.m4a" },
+                    { name: "IM NOT BLOB SWAB", src: "music/Axe Watchmaker - IM NOT BLOB SWAB.m4a" },
+                    { name: "JUST CHILL BRO", src: "music/Axe Watchmaker - JUST CHILL BRO.m4a" }
+                ];
+
+                function getRandomTrack() {
+                    if (playedTracks.size >= tracks.length) {
+                        playedTracks.clear();
+                    }
+                    
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * tracks.length);
+                    } while (playedTracks.has(randomIndex));
+                    
+                    playedTracks.add(randomIndex);
+                    return randomIndex;
+                }
 
                 function loadTrack(index) {
+                    currentTrackIndex = index;
                     audioPlayer.src = tracks[index].src;
                     trackName.textContent = tracks[index].name;
                     playerStatus.textContent = "NOW PLAYING";
+                }
+
+                function playRandomTrack() {
+                    const randomIndex = getRandomTrack();
+                    loadTrack(randomIndex);
+                    audioPlayer.play().then(() => {
+                        isPlaying = true;
+                        playPauseBtn.textContent = "⏸ PAUSE";
+                    }).catch(e => {
+                        console.log("Autoplay prevented. User interaction required.");
+                        isPlaying = false;
+                        playPauseBtn.textContent = "▶ PLAY";
+                    });
                 }
 
                 playPauseBtn.addEventListener('click', function() {
@@ -828,19 +860,22 @@
                         playPauseBtn.textContent = "▶ PLAY";
                         playerStatus.textContent = "PAUSED";
                     } else {
-                        audioPlayer.play().catch(e => {
-                            console.log("Autoplay prevented. User interaction required.");
-                            playPauseBtn.textContent = "▶ PLAY";
-                        });
-                        playPauseBtn.textContent = "⏸ PAUSE";
-                        playerStatus.textContent = "NOW PLAYING";
+                        if (!audioPlayer.src) {
+                            playRandomTrack();
+                        } else {
+                            audioPlayer.play().catch(e => {
+                                console.log("Autoplay prevented. User interaction required.");
+                                playPauseBtn.textContent = "▶ PLAY";
+                            });
+                            playPauseBtn.textContent = "⏸ PAUSE";
+                            playerStatus.textContent = "NOW PLAYING";
+                        }
                     }
                     isPlaying = !isPlaying;
                 });
 
                 nextBtn.addEventListener('click', function() {
-                    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-                    loadTrack(currentTrackIndex);
+                    playRandomTrack();
                     if (isPlaying) {
                         audioPlayer.play();
                     }
@@ -864,24 +899,11 @@
                 });
 
                 audioPlayer.addEventListener('ended', function() {
-                    currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
-                    loadTrack(currentTrackIndex);
-                    audioPlayer.play();
+                    playRandomTrack();
                 });
 
-                loadTrack(currentTrackIndex);
+                playRandomTrack();
                 audioPlayer.volume = volumeSlider.value / 100;
-
-                setTimeout(() => {
-                    audioPlayer.play().then(() => {
-                        isPlaying = true;
-                        playPauseBtn.textContent = "⏸ PAUSE";
-                    }).catch(e => {
-                        console.log("Autoplay prevented. User interaction required.");
-                        isPlaying = false;
-                        playPauseBtn.textContent = "▶ PLAY";
-                    });
-                }, 1000);
             });
         </script>
     </body>

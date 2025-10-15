@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GALLERY - ELEVATOR TO NOWHERE</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="./IMG/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mobile-breakpoint: 768px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            background-image: 
+                linear-gradient(45deg, #111 25%, transparent 25%),
+                linear-gradient(-45deg, #111 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #111 75%),
+                linear-gradient(-45deg, transparent 75%, #111 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            image-rendering: pixelated;
+            padding: 10px;
+        }
+
+        .main {
+            background: #c0c0c0;
+            padding: 15px;
+            width: 100%;
+            max-width: 1000px;
+            border: 4px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: 4px 4px 0px #000;
+            margin-top: 20px;
+        }
+
+        h1, .menu a, .gallery-section h2, .copyright {
+            font-family: "Press Start 2P", system-ui;
+            font-weight: 400;
+            font-style: normal;
+            image-rendering: pixelated;
+        }
+
+        p, .welcome-text, .gallery-description, .copyright {
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+            line-height: 1.4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px #808080;
+            background: #0000ff;
+            color: #ffff00;
+            padding: 10px;
+            border: 2px solid #000;
+            margin: 0 -5px 15px -5px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .menu {
+            background: #000080;
+            padding: 0;
+            margin: 0 0 15px 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 2px solid #000;
+        }
+
+        .menu li {
+            margin: 0;
+            border-right: 2px solid #000;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .menu li:last-child {
+            border-right: none;
+        }
+
+        .menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 5px;
+            font-size: 10px;
+            transition: none;
+            background: #000080;
+            line-height: 1.4;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        .menu a:hover {
+            background: #0000ff;
+            color: #ffff00;
+            transform: none;
+        }
+
+        .content {
+            background: #ffffff;
+            border: 2px solid #000;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .welcome-text {
+            font-size: 1.1em;
+            line-height: 1.4;
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .gallery-section {
+            background: #f0f0f0;
+            border: 3px solid #808080;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .gallery-section h2 {
+            color: #000;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            text-align: center;
+            text-decoration: underline;
+            line-height: 1.4;
+        }
+
+        .gallery-description {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            background: #ffffff;
+            border: 2px solid #808080;
+            padding: 8px;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            border-color: #0000ff;
+            box-shadow: 0 0 8px rgba(0, 0, 255, 0.3);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 150px;
+            background: 
+                repeating-linear-gradient(45deg, #e0e0e0, #e0e0e0 2px, #f8f8f8 2px, #f8f8f8 4px);
+            border: 2px solid #808080;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gallery-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .gallery-item-author {
+            font-family: 'VT323', monospace;
+            font-size: 1.2em;
+            color: #0000ff;
+            margin-top: 5px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-btn {
+            background: #c0c0c0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            padding: 5px 10px;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 0.7em;
+            color: #000;
+            cursor: pointer;
+            image-rendering: pixelated;
+        }
+
+        .pagination-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .pagination-btn.active {
+            background: #0000ff;
+            color: #ffff00;
+            border-color: #000;
+        }
+
+        .pagination-btn:disabled {
+            background: #808080;
+            color: #c0c0c0;
+            cursor: not-allowed;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 0.9em;
+            color: #808080;
+            margin-top: 10px;
+            border-top: 1px solid #808080;
+            padding-top: 8px;
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #000080;
+            border: 2px solid #000;
+            padding: 5px;
+            z-index: 10;
+        }
+        
+        .language-switcher a {
+            font-family: "Press Start 2P", system-ui;
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 8px;
+            background: #000080;
+            border: 2px solid #000;
+            font-size: 0.6em;
+            line-height: 1.4;
+        }
+        
+        .language-switcher a:hover {
+            background: #0000ff;
+            color: #ffff00;
+        }
+        
+        .language-current {
+            background: #0000ff !important;
+            color: #ffff00 !important;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: #000080;
+            color: #fff;
+            border: 2px solid #000;
+            padding: 10px;
+            text-align: center;
+            font-family: "Press Start 2P", system-ui;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: #0000ff;
+            color: #ffff00;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 4px solid #fff;
+            box-shadow: 0 0 20px #0000ff;
+        }
+
+        .modal-author {
+            color: #fff;
+            text-align: center;
+            font-family: 'VT323', monospace;
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .close:hover {
+            color: #ff0000;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-family: "Press Start 2P", system-ui;
+        }
+
+        .prev {
+            left: 10px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 255, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+                align-items: flex-start;
+            }
+            
+            .main {
+                padding: 10px;
+                margin-top: 10px;
+            }
+            
+            h1 {
+                font-size: 1.2em;
+                padding: 8px;
+                margin: 0 -5px 10px -5px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .menu {
+                display: none;
+                flex-direction: column;
+            }
+            
+            .menu.active {
+                display: flex;
+            }
+            
+            .menu li {
+                border-right: none;
+                border-bottom: 2px solid #000;
+                min-width: auto;
+            }
+            
+            .menu li:last-child {
+                border-bottom: none;
+            }
+            
+            .menu a {
+                padding: 12px 5px;
+                font-size: 10px;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: auto;
+                right: auto;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .gallery-image {
+                height: 120px;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 70%;
+            }
+            
+            .nav-btn {
+                font-size: 18px;
+                padding: 8px 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1em;
+            }
+            
+            .menu a {
+                font-size: 9px;
+                padding: 10px 3px;
+            }
+            
+            .gallery-image {
+                height: 100px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .welcome-text {
+                font-size: 1em;
+            }
+            
+            .gallery-item-author {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="language-switcher">
+            <a href="gallery.html" class="language-current">EN</a>
+            <a href="gallery-ru.html">RU</a>
+        </div>
+        
+        <h1>FAN GALLERY - ELEVATOR TO NOWHERE</h1>
+        
+        <div class="mobile-menu-toggle" id="mobileMenuToggle">
+            ☰ MENU
+        </div>
+        
+        <nav>
+            <ul class="menu" id="mainMenu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="comic.html">COMIC</a></li>
+                <li><a href="gallery.html" style="background: #0000ff; color: #ffff00;">GALLERY</a></li>
+                <li><a href="forum.html">FORUM</a></li>
+                <li><a href="archive.html">ARCHIVE</a></li>
+                <li><a href="news.html">NEWS</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+        
+        <div class="content">
+            <div class="welcome-text">
+                <p>🎨 <strong>WELCOME TO THE FAN GALLERY!</strong> 🎨</p>
+                <p>This is where we showcase the amazing creations inspired by Elevator to Nowhere.</p>
+                <p>Click on any image to view it larger. Use the pagination at the bottom to navigate between pages.</p>
+            </div>
+
+            <div class="gallery-section">
+                <h2>GALLERY</h2>
+                <div class="gallery-description">
+                    <p>Page <span id="currentPage">1</span> of <span id="totalPages">5</span></p>
+                </div>
+                
+                <div class="gallery-grid" id="galleryGrid">
+                </div>
+                
+                <div class="pagination" id="pagination">
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © 2025 ELEVATOR TO NOWHERE | GALLERY
+        </div>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <button class="nav-btn prev" id="prevModal">❮</button>
+        <img class="modal-content" id="modalImage">
+        <button class="nav-btn next" id="nextModal">❯</button>
+        <div class="modal-author" id="modalAuthor"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainMenu = document.getElementById('mainMenu');
+            
+            if (mobileMenuToggle && mainMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mainMenu.classList.toggle('active');
+                });
+            }
+
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.menu') && !event.target.closest('.mobile-menu-toggle')) {
+                    mainMenu.classList.remove('active');
+                }
+            });
+
+            const galleryData = [
+                // Page 1
+                [
+                    { id: 1, title: "COOKGON", author: "by shwabra", date: "10/15/2025", src: "./IMG/gallery/shwabra 10152025.webp" },
+                ]
+            ];
+
+            const galleryGrid = document.getElementById('galleryGrid');
+            const pagination = document.getElementById('pagination');
+            const currentPageElement = document.getElementById('currentPage');
+            const totalPagesElement = document.getElementById('totalPages');
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalAuthor = document.getElementById('modalAuthor');
+            const closeModal = document.querySelector('.close');
+            const prevModalBtn = document.getElementById('prevModal');
+            const nextModalBtn = document.getElementById('nextModal');
+
+            let currentPage = 1;
+            const totalPages = galleryData.length;
+            let currentModalIndex = 0;
+            let currentModalPage = 1;
+
+            function initGallery() {
+                totalPagesElement.textContent = totalPages;
+                renderGalleryPage(currentPage);
+                renderPagination();
+            }
+
+            function renderGalleryPage(page) {
+                galleryGrid.innerHTML = '';
+                currentPageElement.textContent = page;
+                
+                const pageData = galleryData[page - 1];
+                
+                pageData.forEach((item, index) => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    galleryItem.dataset.id = item.id;
+                    galleryItem.dataset.page = page;
+                    galleryItem.dataset.index = index;
+                    
+                    galleryItem.innerHTML = `
+                        <div class="gallery-image">
+                            <img src="${item.src}" alt="${item.title}" 
+                                onerror="this.style.display='none'; this.parentNode.innerHTML='[ ${item.title} ]';">
+                        </div>
+                        <div class="gallery-item-author">${item.author}</div>
+                    `;
+                    
+                    galleryItem.addEventListener('click', () => openModal(page, index));
+                    galleryGrid.appendChild(galleryItem);
+                });
+            }
+
+            function renderPagination() {
+                pagination.innerHTML = '';
+
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'pagination-btn';
+                prevBtn.textContent = '◀ PREV';
+                prevBtn.disabled = currentPage === 1;
+                prevBtn.addEventListener('click', () => changePage(currentPage - 1));
+                pagination.appendChild(prevBtn);
+
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageBtn = document.createElement('button');
+                    pageBtn.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
+                    pageBtn.textContent = i;
+                    pageBtn.addEventListener('click', () => changePage(i));
+                    pagination.appendChild(pageBtn);
+                }
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'pagination-btn';
+                nextBtn.textContent = 'NEXT ▶';
+                nextBtn.disabled = currentPage === totalPages;
+                nextBtn.addEventListener('click', () => changePage(currentPage + 1));
+                pagination.appendChild(nextBtn);
+            }
+
+            function changePage(page) {
+                if (page < 1 || page > totalPages) return;
+                
+                currentPage = page;
+                renderGalleryPage(currentPage);
+                renderPagination();
+
+                galleryGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            function openModal(page, index) {
+                currentModalPage = page;
+                currentModalIndex = index;
+                
+                const item = galleryData[page - 1][index];
+                modalImage.src = item.src;
+                modalAuthor.textContent = item.author;
+                
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModalFunc() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            function nextImage() {
+                const currentPageData = galleryData[currentModalPage - 1];
+                
+                if (currentModalIndex < currentPageData.length - 1) {
+                    currentModalIndex++;
+                } else if (currentModalPage < totalPages) {
+                    currentModalPage++;
+                    currentModalIndex = 0;
+                } else {
+                    currentModalPage = 1;
+                    currentModalIndex = 0;
+                }
+                
+                const item = galleryData[currentModalPage - 1][currentModalIndex];
+                modalImage.src = item.src;
+                modalAuthor.textContent = item.author;
+            }
+
+            function prevImage() {
+                if (currentModalIndex > 0) {
+                    currentModalIndex--;
+                } else if (currentModalPage > 1) {
+                    currentModalPage--;
+                    currentModalIndex = galleryData[currentModalPage - 1].length - 1;
+                } else {
+                    currentModalPage = totalPages;
+                    currentModalIndex = galleryData[currentModalPage - 1].length - 1;
+                }
+                
+                const item = galleryData[currentModalPage - 1][currentModalIndex];
+                modalImage.src = item.src;
+                modalAuthor.textContent = item.author;
+            }
+
+            closeModal.addEventListener('click', closeModalFunc);
+            prevModalBtn.addEventListener('click', prevImage);
+            nextModalBtn.addEventListener('click', nextImage);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModalFunc();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (modal.style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        closeModalFunc();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevImage();
+                    } else if (e.key === 'ArrowRight') {
+                        nextImage();
+                    }
+                }
+            });
+
+            initGallery();
+        });
+    </script>
+</body>
+</html>
